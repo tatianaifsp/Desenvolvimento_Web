@@ -9,12 +9,19 @@ Ele é usado para trocar dados entre o cliente (navegador) e o servidor, bem com
 O JSON é um formato de dados leve, baseado em texto, que utiliza uma estrutura de objetos e arrays. Ele é fácil de ler para humanos e simples de processar para máquinas. Além disso, é amplamente utilizado em APIs e para comunicação entre sistemas web. 🌍🔄
 
 Exemplo básico de JSON:
+
 {
+
   "nome": "Camiseta",
+  
   "quantidade": 10,
+  
   "preco": 29.99
+  
 }
+
 🚀 Por que usar JSON no Desenvolvimento Web?
+
 1. Intercâmbio de Dados
 O JSON é a forma mais comum de trocar dados entre o cliente (navegador) e o servidor. 
 O servidor envia os dados em formato JSON, que facilita a interpretação e manipulação desses dados no cliente (usando AJAX ou fetch). 🌐💬
@@ -24,10 +31,12 @@ Você pode usar JSON para armazenar dados localmente no navegador, usando localS
 Isso permite salvar dados temporários, sem depender de um banco de dados, e recuperar esses dados depois. 🗃️🔑
 
 3. Facilidade de Manipulação com JavaScript
-Como o JSON é nativo do JavaScript, é fácil de trabalhar com ele. 
+Como o JSON é nativo do JavaScript, é fácil de trabalhar com ele.
+
 O JavaScript fornece duas funções principais para manipular JSON:
 
 JSON.parse(): Converte uma string JSON em um objeto JavaScript.
+
 JSON.stringify(): Converte um objeto JavaScript em uma string JSON. 🔧🛠️
 
 Essas funções tornam o JSON uma excelente escolha para comunicação e armazenamento de dados.
