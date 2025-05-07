@@ -1,1 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Controle de Estoque</title>
+</head>
+<body>
+  <h1>Controle de Estoque</h1>
+
+  <!-- Formulário para adicionar ou atualizar um item -->
+  <form id="estoque-form">
+    <input type="text" id="nome" placeholder="Nome do produto" required>
+    <input type="number" id="quantidade" placeholder="Quantidade" required>
+    <button type="submit">Salvar</button>
+  </form>
+
+  <h2>Lista de Produtos</h2>
+  <ul id="lista-produtos"></ul>
+
+  <script>
+    // Variável para armazenar o estoque
+    let estoque = [];
+
+    // Referências aos elementos HTML
+    const form = document.getElementById('estoque-form');
+    const lista = document.getElementById('lista-produtos');
+    let editIndex = null; // Índice do item sendo editado (null = novo item)
+
+    // Função para exibir os itens da lista (READ)
+    function atualizarLista() {
+      lista.innerHTML = ''; // Limpa a lista antes de desenhar
+      estoque.forEach((item, index) => {
+        const li = document.createElement('li');
+        li.innerHTML = `
+          ${item.nome} - Quantidade: ${item.quantidade}
+          <button onclick="editar(${index})">Editar</button>
+          <button onclick="remover(${index})">Excluir</button>
+        `;
+        lista.appendChild(li); // Adiciona o item à lista na página
+      });
+    }
+
+    // Função para salvar ou atualizar um item (CREATE/UPDATE)
+    form.onsubmit = function(event) {
+      event.preventDefault(); // Impede que a página recarregue
+      const nome = document.getElementById('nome').value;
+      const quantidade = parseInt(document.getElementById('quantidade').value);
+
+      const produto = { nome, quantidade };
+
+      if (editIndex === null) {
+        estoque.push(produto); // CREATE: adiciona novo produto
+      } else {
+        estoque[editIndex] = produto; // UPDATE: substitui item editado
+        editIndex = null; // Limpa a edição após salvar
+      }
+
+      form.reset(); // Limpa o formulário
+      atualizarLista(); // Atualiza a lista na tela
+    };
+
+    // Função para preencher o formulário ao clicar em "Editar"
+    function editar(index) {
+      document.getElementById('nome').value = estoque[index].nome;
+      document.getElementById('quantidade').value = estoque[index].quantidade;
+      editIndex = index; // Armazena o índice para atualização
+    }
+
+    // Função para remover um item (DELETE)
+    function remover(index) {
+      estoque.splice(index, 1); // Remove o item da lista
+      atualizarLista(); // Atualiza a exibição
+    }
+
+    // Função para carregar o estoque do arquivo JSON
+    function carregarEstoque() {
+      fetch('estoque.json')
+        .then(response => response.json()) // Converte o conteúdo da resposta para JSON
+        .then(dados => {
+          estoque = dados; // Atribui os dados carregados à variável estoque
+          atualizarLista(); // Exibe a lista na tela
+        })
+        .catch(error => {
+          console.error('Erro ao carregar o arquivo JSON:', error);
+        });
+    }
+
+    // Carrega o estoque ao iniciar
+    carregarEstoque();
+
+  </script>
+</body>
+</html>
+
+
+
 
