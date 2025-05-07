@@ -35,26 +35,8 @@ Essas funções tornam o JSON uma excelente escolha para comunicação e armazen
 Você pode carregar um arquivo JSON de duas maneiras principais:
 
 Estático: O JSON é carregado diretamente no código como uma string no JavaScript. 📄
-
 Dinâmico: O JSON pode ser carregado de um servidor usando AJAX ou a API fetch(), ou recuperado do localStorage para persistência. 🌍🔄
 
-2. Manipular e Exibir Dados
-Depois de carregar o JSON, você pode usar JavaScript para manipular os dados e exibi-los no HTML. 
-Por exemplo, você pode mostrar produtos em uma lista, atualizar valores ou enviar os dados de volta ao servidor.
-
-Exemplo de como exibir dados JSON no HTML:
-javascript
-
-const tabelaProdutos = document.getElementById("tabelaProdutos");
-produtos.forEach(produto => {
-  const linha = document.createElement("tr");
-  linha.innerHTML = `
-    <td>${produto.nome}</td>
-    <td>${produto.quantidade}</td>
-    <td>${produto.preco}</td>
-  `;
-  tabelaProdutos.appendChild(linha);
-});
 
 💡 Benefícios de Usar JSON
 Leve e Rápido: O JSON é um formato leve, ideal para transferir dados rapidamente entre o cliente e o servidor. 🚀
